@@ -76,6 +76,7 @@ public class ForegroundService extends Service implements SensorEventListener, V
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this,0,notificationIntent,0);
 
+//        FOR NOTIFICATION STOP BUTTON
     //        Intent stopServiceIntent = new Intent(this, MainActivity.class);
     //        stopServiceIntent.setAction(ACTION_STOP_SERVICE);
 
