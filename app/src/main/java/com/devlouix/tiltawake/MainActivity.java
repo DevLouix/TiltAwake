@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -45,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
         helpText = findViewById(R.id.help_text);
 
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+        MobileAds.initialize(this, initializationStatus -> {
         });
 
         mAdView = findViewById(R.id.adView);
@@ -107,6 +107,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.privacy_policy:
+                startActivity(new Intent(MainActivity.this,PrivacyPolicy.class));
+            case R.id.exit:
+                finish();
+                System.exit(0);
+        }
+        return false;
     }
 
     public boolean IsRunning(){
